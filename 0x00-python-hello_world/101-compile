@@ -1,2 +1,2 @@
 #!/bin/bash
-python -m compileall $PYFILE -b $PYFILEc
+python3 -m compileall -b $PYFILE
