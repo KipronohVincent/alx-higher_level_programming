@@ -1,47 +1,44 @@
 #include "lists.h"
+#include <stdlib.h>
+#include <unistd.h>
 
 /**
-*insert_node - add a node in the correct place
-*@head: pointer to point a list
-*@number: number of each node (id)
-*Return: point to a list with the new node
-*/
-
+ * insert_node - inserts a number in an ordered linked list
+ * @head: double pointer to the linked list
+ * @number: number to insert in the new node
+ *
+ * Return: address of the new node, or NULL
+ */
 listint_t *insert_node(listint_t **head, int number)
 {
-	listint_t *to_add, *aux = *head, *node_anterior = NULL;
+	listint_t *current = *head;
+	listint_t *new = NULL;
+	listint_t *temp = NULL;
 
-	to_add = malloc(sizeof(listint_t));
-	if (to_add == NULL)
+	if (!head)
 		return (NULL);
-	to_add->n = number;
-	if (*head == NULL)
+
+	new = malloc(sizeof(listint_t));
+	if (!new)
+		return (NULL);
+	new->n = number;
+	new->next = NULL;
+
+	if (!*head || (*head)->n > number)
 	{
-		*head = to_add;
-		to_add->next = NULL;
+		new->next = *head;
+		return (*head = new);
 	}
 	else
 	{
-		while (number > aux->n && aux->next != NULL)
+		while (current && current->n < number)
 		{
-			node_anterior = aux;
-			aux = aux->next;
+			temp = current;
+			current = current->next;
 		}
-		if (number > aux->n)
-		{
-			aux->next = to_add;
-			to_add->next = NULL;
-		}
-		else if (node_anterior == NULL)
-		{
-			to_add->next = *head;
-			*head = to_add;
-		}
-		else
-		{
-			to_add->next = aux;
-			node_anterior->next = to_add;
-		}
+		temp->next = new;
+		new->next = current;
 	}
-	return (*head);
+
+	return (new);
 }
