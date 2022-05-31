@@ -1,6 +1,6 @@
 # Python - if/else, loops, functions
 
-* **Here I will be utilizing conditionals loops and functions to do the provided tasks.
+* Here I will be utilizing conditionals loops and functions to do the provided tasks.
 
 ## Function Prototypes :floppy_disk:
 
