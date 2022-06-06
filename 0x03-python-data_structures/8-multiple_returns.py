@@ -6,6 +6,6 @@ If sentence is empty, the first character should be equal to None.
 
 def multiple_returns(sentence):
     if sentence == "":
-        return None, None
+        return (0, None)
     else:
-        return sentence[0], sentence[-1]
+        return len((sentence), sentence[0])
