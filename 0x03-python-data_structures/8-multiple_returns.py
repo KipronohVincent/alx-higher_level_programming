@@ -1,11 +1,8 @@
 #!/usr/bin/python3
-"""
-If sentence is empty, the first character should be equal to None.
-"""
-
-
 def multiple_returns(sentence):
-    if sentence == "":
-        return (0, None)
+    my_tuple = ()
+    if len(sentence) == 0:
+        my_tuple = 0, "None"
     else:
-        return len((sentence), sentence[0])
+        my_tuple = len(sentence), sentence[0]
+    return my_tuple
