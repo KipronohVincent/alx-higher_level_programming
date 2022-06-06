@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 """
-A function that returns a tuple with the length of a string and its first character.
+If sentence is empty, the first character should be equal to None.
 """
+
+
 def multiple_returns(sentence):
-    if sentence is None:
+    if sentence == "":
         return None, None
-    if len(sentence) == 0:
-        return 0, ""
-    return len(sentence), sentence[0]
+    else:
+        return sentence[0], sentence[-1]
