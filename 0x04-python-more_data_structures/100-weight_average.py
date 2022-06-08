@@ -1,8 +1,5 @@
 #!/usr/bin/python3
 def weight_average(my_list=[]):
-    """A function that returns the weighted average of all integers tuple (<score>, <weight>) in the list
-        Returns 0 if the list is empty
-     """
     if len(my_list) == 0:
         return 0
     sum_score = 0
