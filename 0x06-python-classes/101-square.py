@@ -1,28 +1,25 @@
 #!/usr/bin/python3
-"""Create square class."""
+""" Creating a square class """
 
 
 class Square:
-    """Define a square class"""
+    """
+    Defining a class square
+    """
 
     def __init__(self, size=0, position=(0, 0)):
-        """Initialize a new square.
-
-        Args:
-            size (int): The size of the square.
-            position (tuple): The position of the square.
-        """
+        """Initializes the data."""
         self.size = size
         self.position = position
 
     @property
     def size(self):
-        """Get/set the size of the square."""
+        """Returns the size of the square."""
         return self.__size
 
     @size.setter
     def size(self, value):
-        """Set the size of the square."""
+        """Sets the size to a value."""
         if not isinstance(value, int):
             raise TypeError("size must be an integer")
         elif value < 0:
@@ -31,12 +28,12 @@ class Square:
 
     @property
     def position(self):
-        """Get/set the position of the square."""
+        """Retrieves the position."""
         return self.__position
 
     @position.setter
     def position(self, value):
-        """Set the position of the square."""
+        """Sets the position to a value."""
         if not isinstance(value, tuple) or len(value) != 2:
             raise TypeError("position must be a tuple of 2 positive integers")
         if not isinstance(value[0], int) or not isinstance(value[1], int):
@@ -46,11 +43,11 @@ class Square:
         self.__position = value
 
     def area(self):
-        """Return the area of the square."""
+        """Returns the current square area."""
         return self.__size ** 2
 
     def my_print(self):
-        """Print the square to stdout."""
+        """ prints to stdout"""
         if self.__size == 0:
             print()
         else:
@@ -62,3 +59,4 @@ class Square:
                 for j in range(0, self.__size):
                     print("#", end="")
                 print()
+            return ''
