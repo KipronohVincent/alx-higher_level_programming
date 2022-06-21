@@ -4,11 +4,13 @@
 
 class Square:
     """ Defining a class square """
-    def __init__(self, size=0, position=(0, 0)):
+    position: def __init__(self, size=0, position=(0, 0)):
         """ Initializing a square class
         Args: size=0: size of the square
+        Args: position=(0, 0): position of the square
          """
         self.__size = size
+        self.__position = position
 
     @property
     def size(self):
@@ -47,5 +49,7 @@ class Square:
         if self.__size == 0:
             print()
         else:
+            for i in range(self.__position[1]):
+                print()
             for i in range(self.__size):
-                print("#" * self.__size)
+                print(" " * self.__position[0] + "#" * self.__size)
