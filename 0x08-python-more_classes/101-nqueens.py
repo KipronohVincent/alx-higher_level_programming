@@ -1,81 +1,56 @@
 #!/usr/bin/python3
-"""Solves the N-queens puzzle.
 
-Determines all possible solutions to placing N
-N non-attacking queens on an NxN chessboard.
-
-Example:
-    $ ./101-nqueens.py N
-
-N must be an integer greater than or equal to 4.
-
-Attributes:
-    board (list): A list of lists representing the chessboard.
-    solutions (list): A list of lists containing solutions.
-
-Solutions are represented in the format [[r, c], [r, c], [r, c], [r, c]]
-where `r` and `c` represent the row and column, respectively, where a
-queen must be placed on the chessboard.
 """
-
-
+module for calculation of n-queens problem
+"""
 import sys
-import itertools
 
-
-def main():
-    """Main function."""
-    if len(sys.argv) != 2:
-        print("Usage: ./101-nqueens.py N")
-        sys.exit(1)
-
-    N = int(sys.argv[1])
-    if N < 4:
-        print("N must be an integer greater than or equal to 4.")
-        sys.exit(1)
-
-    board = [[0 for _ in range(N)] for _ in range(N)]
-    solutions = []
-    solve(board, 0, solutions)
-    print("Found %d solutions." % len(solutions))
-    for solution in solutions:
-        print(solution)
-
-
-def solve(board, row, solutions):
-    """Solve the N-queens puzzle.
-
-    Args:
-        board (list): A list of lists representing the chessboard.
-        row (int): The current row.
-        solutions (list): A list of lists containing solutions.
+class Solution_Board:
+    """class for use with n queens problem
     """
-    if row == len(board):
-        solutions.append(board)
-        return
+    solutions = []
 
-    for col in range(len(board)):
-        if is_valid(board, row, col):
-            board[row][col] = 1
-            solve(board, row + 1, solutions)
-            board[row][col] = 0
+    def __init__(self, num):
+        self.num = num
 
+    @property
+    def num(self):
+        return self.__num
 
-def is_valid(board, row, col):
+    @num.setter
+    def num(self, value):
+        if not isinstance(num, int):
+            raise TypeError("num should be an int")
+        self.__num = value
 
-    # Check column
-    for i in range(row):
-        if board[i][col] == 1:
-            return False
+args = sys.argv
 
-    # Check diagonal
-    for i, j in zip(range(row, -1, -1), range(col, -1, -1)):
-        if board[i][j] == 1:
-            return False
+if len(args) != 2:
+    exit(1)
+if not args[1].isdigit():
+    print("N must be a number")
+    exit(1)
 
-    # Check diagonal
-    for i, j in zip(range(row, -1, -1), range(col, len(board))):
-        if board[i][j] == 1:
-            return False
+num = int(args[1])
+if num < 4:
+    print("N must be at least 4")
+    exit(1)
 
-    return True
+solutions = []
+board = [[0 for a in range(0, num)] for b in range(0, num)]
+running = True
+while running:
+    sol = get_n_queens(board)
+    solutions.append(sol)
+    running = False
+
+def get_n_queens(chess_board, column, num):
+    if column >= num:
+        return True
+    for i in range(0, num):
+        if board_safe(chess_board, column):
+            chess_board[i][column] = 1
+            if get_n_queens(chess_board, column + 1):
+                return True
+            board[i][column] = 0
+    return False
