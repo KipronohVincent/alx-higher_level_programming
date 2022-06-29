@@ -1,32 +1,35 @@
 #!/usr/bin/python3
-"""
-Task 1 - matrix_divided(matrix, div):
-"""
+"""Defines a matrix division function."""
 
 
 def matrix_divided(matrix, div):
-    """function that divide all the values of the matrix"""
-    err_msg = "matrix must be a matrix (list of lists) of integers/floats"
-    if matrix is None or len(matrix) == 0 or len(matrix[0]) == 0:
-        raise TypeError(err_msg)
-    """if len(matrix[0]) != len(matrix[1]):
-        raise TypeError("Each row of the matrix must have the same size")
+    """Divide all elements of a matrix.
+
+    Args:
+        matrix (list): A list of lists of ints or floats.
+        div (int/float): The divisor.
+    Raises:
+        TypeError: If the matrix contains non-numbers.
+        TypeError: If the matrix contains rows of different sizes.
+        TypeError: If div is not an int or float.
+        ZeroDivisionError: If div is 0.
+    Returns:
+        A new matrix representing the result of the division.
     """
-    if type(div) != int and type(div) != float:
+    if (not isinstance(matrix, list) or matrix == [] or
+            not all(isinstance(row, list) for row in matrix) or
+            not all((isinstance(ele, int) or isinstance(ele, float))
+                    for ele in [num for row in matrix for num in row])):
+        raise TypeError("matrix must be a matrix (list of lists) of "
+                        "integers/floats")
+
+    if not all(len(row) == len(matrix[0]) for row in matrix):
+        raise TypeError("Each row of the matrix must have the same size")
+
+    if not isinstance(div, int) and not isinstance(div, float):
         raise TypeError("div must be a number")
+
     if div == 0:
         raise ZeroDivisionError("division by zero")
 
-    results_matrix = []
-    for listas in matrix:
-        if type(listas) != list:
-            raise TypeError(err_msg)
-        if len(listas) != len(matrix[0]):
-            raise TypeError("Each row of the matrix must have the same size")
-        c_resList = []
-        for valor in listas:
-            if type(valor) != int and type(valor) != float:
-                raise TypeError(err_msg)
-            c_resList.append(round(valor/div, 2))
-        results_matrix.append(c_resList)
-    return results_matrix
+    return ([list(map(lambda x: round(x / div, 2), row)) for row in matrix])
