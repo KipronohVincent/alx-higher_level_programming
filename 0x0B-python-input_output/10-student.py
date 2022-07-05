@@ -12,7 +12,7 @@ class Student:
 
     def to_json(self, attrs=None):
         """ retrieves a dictionary representation """
-        if attrs is None:
-            return self.__dict__
+        if (type(attrs)) == list and all(type(i) == str for i in attrs):
+            return {k: getattr(self, k) for k in attrs if hasattr(self, k)}
         else:
-            return {key: value for key, value in self.__dict__.items() if key in attrs}
+            return self.__dict__
