@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+"""adding arguments to list, and saving them to a file"""
+
 import json
 import sys
 import os.path
