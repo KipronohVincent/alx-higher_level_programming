@@ -1,7 +1,8 @@
 #!/usr/bin/python3
-""" Writing a string that returns the number of characters written """
+""" Writing string to text file that returns the number of characters"""
 
 
 def write_file(filename="", text=""):
     with open(filename, 'w') as f:
-        return f.write(text)
+        less = f.write(text)
+        return less
