@@ -1,7 +1,8 @@
 #!/usr/bin/python3
-""" Writing string to text file that returns the number of characters"""
+"""Defines a file-writing function."""
 
 
 def write_file(filename="", text=""):
-    with open(filename, 'w', encoding="utf-8") as f:
+    """Write a string to a UTF"""
+    with open(filename, "w", encoding="utf-8") as f:
         return f.write(text)
