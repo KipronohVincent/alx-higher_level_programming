@@ -85,3 +85,46 @@ class Rectangle(Base):
         """Update the class Rectangle by overriding the __str__ method"""
         return "[Rectangle] ({:d}) {:d}/{:d} - {:d}/{:d}".format(
             self.id, self.x, self.y, self.width, self.height)
+
+    def update(self, *args, **kwargs):
+        """Updating the rectangle"""
+        if args:
+            for i in range(len(args)):
+                if i == 0:
+                    self.id = args[i]
+                elif i == 1:
+                    self.width = args[i]
+                elif i == 2:
+                    self.height = args[i]
+                elif i == 3:
+                    self.x = args[i]
+                elif i == 4:
+                    self.y = args[i]
+        else:
+            for key, value in kwargs.items():
+                if key == "id":
+                    self.id = value
+                elif key == "width":
+                    self.width = value
+                elif key == "height":
+                    self.height = value
+                elif key == "x":
+                    self.x = value
+                elif key == "y":
+                    self.y = value
+
+    def to_dictionary(self):
+        """Returning the dictionary representation of the rectangle"""
+        return {
+            "id": self.id,
+            "width": self.width,
+            "height": self.height,
+            "x": self.x,
+            "y": self.y
+        }
+
+    def save_to_file(self):
+
+        """Saving the rectangle to a file"""
+        with open("Rectangle.json", "w") as f:
+            json.dump(self.to_dictionary(), f)
