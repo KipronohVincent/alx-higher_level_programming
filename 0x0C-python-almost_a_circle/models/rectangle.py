@@ -8,11 +8,11 @@ class Rectangle(Base):
     """The class Rectangle that inherits from Base"""
     def __init__(self, width, height, x=0, y=0, id=None):
         """Initializing the class Rectangle"""
-        super().__init__(id)
         self.width = width
         self.height = height
         self.x = x
         self.y = y
+        super().__init__(id)
 
     @property
     def width(self):
@@ -91,6 +91,8 @@ class Rectangle(Base):
         if args:
             for i in range(len(args)):
                 if i == 0:
+                    if type(args[i]) is not int:
+                        raise TypeError("id must be an integer")
                     self.id = args[i]
                 elif i == 1:
                     self.width = args[i]
@@ -103,6 +105,8 @@ class Rectangle(Base):
         else:
             for key, value in kwargs.items():
                 if key == "id":
+                    if type(value) is not int:
+                        raise TypeError("id must be an integer")
                     self.id = value
                 elif key == "width":
                     self.width = value
