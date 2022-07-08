@@ -122,9 +122,3 @@ class Rectangle(Base):
             "x": self.x,
             "y": self.y
         }
-
-    def save_to_file(self):
-
-        """Saving the rectangle to a file"""
-        with open("Rectangle.json", "w") as f:
-            json.dump(self.to_dictionary(), f)
