@@ -21,8 +21,11 @@ class Base:
     @staticmethod
     def to_json_string(list_dictionaries):
         """Returning json string representation of list of dictionaries"""
-        if list_dictionaries is None or len(list_dictionaries) == 0:
+        if list_dictionaries is None or list_dictionaries == []:
             return "[]"
+        if (type(list_dictionaries) != list or
+           not all(type(x) == dict for x in list_dictionaries)):
+            raise TypeError("list_dictionaries must be a list of dictionaries")
         return json.dumps(list_dictionaries)
 
     @classmethod
@@ -49,7 +52,7 @@ class Base:
     def from_json_string(json_string):
         """Returning list of objects from json string"""
         if json_string is None or len(json_string) == 0:
-            return []
+            return "[]"
         return json.loads(json_string)
 
     @classmethod
