@@ -384,6 +384,5 @@ class TestBase(unittest.TestCase):
         self.assertEqual(s, str(x.exception))
 
 
-
 if __name__ == "__main__":
     unittest.main()
