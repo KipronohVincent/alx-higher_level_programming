@@ -1,2 +1,2 @@
--- Creates a table called first_table with values id and name.
-CREATE TABLE IF NOT EXISTS `first_table` (`id` INT, `name` VARCHAR(256));
+-- Prints the full description of the table first_table.
+SHOW CREATE TABLE `first_table`;
