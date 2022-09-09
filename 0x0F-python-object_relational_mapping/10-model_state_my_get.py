@@ -21,7 +21,7 @@ if __name__ == "__main__":
     session = Session(engine)
     state = session.query(State).filter(State.name == sys.argv[4]).first()
     if state:
-        print("{}: {}".format(state.id, state.name))
+        print("{}".format(state.id))
     else:
         print("Not found")
     session.close()
