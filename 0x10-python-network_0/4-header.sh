@@ -1,3 +1,3 @@
 #!/bin/bash
 #pass a variable in the header of the request
-curl -s "$1" -H "X-School-User-Id: 98"
+curl -sH "X-HolbertonSchool-User-Id: 98" "$1"
