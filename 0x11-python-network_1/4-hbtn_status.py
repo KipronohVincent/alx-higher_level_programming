@@ -1,13 +1,12 @@
 #!/usr/bin/python3
 """
-script que haga un fetch a https://intranet.hbtn.io/status con request
+Write a Python script that fetches https://alx-intranet.hbtn.io/status
 """
+import requests
+
+
 if __name__ == "__main__":
-    import requests
-
-    url = "https://intranet.hbtn.io/status"
-    data_req = requests.get(url)
-
+    r = requests.get("https://alx-intranet.hbtn.io/status")
     print("Body response:")
-    print("\t- type:", type(data_req.text))
-    print("\t- content:", data_req.text)
+    print("\t- type: {}".format(type(r.text)))
+    print("\t- content: {}".format(r.text))
